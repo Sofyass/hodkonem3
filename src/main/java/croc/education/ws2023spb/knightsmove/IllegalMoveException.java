@@ -7,5 +7,20 @@ package croc.education.ws2023spb.knightsmove;
  * @author Dmitry Malenok
  */
 public class IllegalMoveException extends Exception {
-    // TODO: наполнить класс.
+    private ChessPosition from;
+    private ChessPosition to;
+
+    public IllegalMoveException(ChessPosition from, ChessPosition to) {
+        this.from = from;
+        this.to = to;
+    }
+
+    public IllegalMoveException(String s) {
+    }
+
+    @Override
+    public String getMessage() {
+        return "Illegal move from " + from.toString() + " to " + to.toString();
+    }
 }
+

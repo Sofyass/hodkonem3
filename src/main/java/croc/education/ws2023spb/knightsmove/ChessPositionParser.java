@@ -25,7 +25,41 @@ public final class ChessPositionParser {
      * @return объект расположения фигуры на шахматной доске, соответствующий переданному наименованию клетки
      */
     public static ChessPosition parse(final String position) {
-        // TODO: создать реализацию метода.
-        throw new UnsupportedOperationException("Вызван ещё не реализованный метод.");
+        if (position.length() != 2) {
+            throw new IllegalArgumentException("Invalid position: " + position);
+        }
+        char xChar = position.charAt(0);
+        int x = xChar - 'a' + 1;
+        int y = Character.getNumericValue(position.charAt(1));
+        return new ChessPositionImpl(x, y);
+    }
+
+    private static class ChessPositionImpl implements ChessPosition {
+
+        private final int x;
+        private final int y;
+
+        public ChessPositionImpl(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
+
+        @Override
+        public int x() {
+            return x;
+        }
+
+        @Override
+        public int y() {
+            return y;
+        }
+
+        @Override
+        public String toString() {
+            return (char) (x + 'a' - 1) + "" + y;
+        }
     }
 }
+
+
+
